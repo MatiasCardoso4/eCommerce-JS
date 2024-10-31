@@ -2,48 +2,55 @@ const input = document.querySelector("input");
 const form = document.querySelector("form");
 const productsList = document.querySelector(".products-list-grid");
 
-let product = undefined;
+let product = "";
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  getProducts();
 });
 
-input.addEventListener("input", ({ target }) => {
+input.addEventListener("change", ({ target }) => {
   product = target.value;
+  console.log(product);
 });
 
-const url = `https://real-time-product-search.p.rapidapi.com/search-v2?q=${product}&country=us&language=en&page=1&limit=20&sort_by=BEST_MATCH&product_condition=ANY`;
-const options = {
-  method: "GET",
-  headers: {
-    "x-rapidapi-key": "e80e2fcc4cmsh8ee256f47c6ae57p17c388jsn778121277350",
-    "x-rapidapi-host": "real-time-product-search.p.rapidapi.com",
-  },
-};
+const url = `https://fakestoreapi.com/products/${product}`;
 
 async function getProducts() {
   try {
-    const response = await fetch(url, options);
+    const response = await fetch(url);
     const result = await response.json();
-    const { data } = result;
-    // console.log(data);
-    showProducts(data.products);
+    console.log(result);
+
+    showProducts(result);
   } catch (error) {
     console.error(error);
   }
 }
 
 function showProducts(products) {
-  products.forEach((product) => {
+  const filteredProducts = filterProducts(products, product);
+
+  filteredProducts.map((product) => {
+    const product_title = document.createElement("p");
     const li = document.createElement("li");
     const img = document.createElement("img");
-    img.setAttribute("src", product.product_photos[0]);
-    li.textContent = product.product_title;
-    li.append(img);
+    product_title.textContent = product.title;
+    img.setAttribute("src", product.image);
+
+    li.append(product_title, img);
     li.classList = "product";
     productsList.append(li);
   });
 }
 
-getProducts();
+function filterProducts(products, product) {
+  products.filter((p) => {
+    if (p.title.toLocaleLowerCase().includes(product.toLocaleLowerCase())) {
+      return p;
+    }
+  });
+
+  return products;
+}
+
+window.addEventListener("DOMContentLoaded", getProducts);

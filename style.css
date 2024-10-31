@@ -73,7 +73,7 @@ ul .links:hover {
 }
 
 .filters {
-  position: absolute;
+  position: fixed;
   width: 200px;
   height: 100vh;
   display: flex;
@@ -97,24 +97,47 @@ input[type="range"],
   display: grid;
   place-items: center;
   grid-area: content;
+  margin-top: 50px;
 }
 
 .products-list-grid {
   height: 100vh;
   display: grid;
   place-items: center;
-  column-gap: 120px;
+  column-gap: 50px;
+  row-gap: 20px;
   grid-template-columns: repeat(4, 1fr);
+  padding: 8px;
 }
 
 .product {
-  width: 120px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px solid black;
+  border-radius: 6px;
+}
+
+.product p {
+  width: 100%;
+  text-align: center;
 }
 
 img {
   width: 80px;
+}
+
+@media (max-width: 1000px) {
+  .products-list-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product,
+  .product p {
+    width: 100%;
+    font: 16px;
+  }
 }
