@@ -18,7 +18,7 @@ body {
 .container {
   display: grid;
   grid-template-columns: 250px 1fr;
-  grid-template-rows: 250px 1fr;
+  grid-template-rows: 150px 1fr;
   grid-template-areas:
     "header header header"
     "aside content content"
@@ -28,9 +28,8 @@ body {
 
 .header {
   display: flex;
-  flex-direction: column;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: slateblue;
   box-shadow: 1px 0px 4px 4px rgba(0, 0, 0, 0.3);
@@ -41,7 +40,6 @@ body {
 }
 
 .header h1 a {
-  padding-left: 30px;
   color: var(--text-clr);
   text-decoration: none;
 }
@@ -53,25 +51,53 @@ body {
   margin-right: 14px;
 }
 
+.navigation-menu {
+  position: absolute;
+  bottom: 0;
+}
+
 ul li {
   height: 50px;
   display: flex;
   align-items: center;
 }
 
-ul .links {
+ul .navigation-item {
   text-decoration: none;
-  font-size: 22px;
-  color: white;
-  margin: 8px;
+  font-size: 16px;
+  color: #ffff;
   height: 100%;
   display: flex;
   align-items: center;
   padding: 0 30px;
+  cursor: pointer;
 }
 
-ul .links:hover {
-  background-color: rgb(149, 138, 217);
+.categories {
+  position: relative;
+}
+
+.categories:hover {
+}
+
+.categories span svg {
+  vertical-align: middle;
+}
+
+.categories::after {
+  content: "";
+  display: block;
+  height: 300px;
+  width: 200px;
+  background-color: white;
+  border: 2px solid black;
+  z-index: -1;
+  position: absolute;
+  top: 100%;
+}
+
+.navigation-item:hover {
+  text-decoration: underline;
 }
 
 .filters {
