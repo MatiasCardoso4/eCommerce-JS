@@ -113,7 +113,7 @@ ul li .navigation-link {
   display: flex;
   height: 300px;
   width: 250px;
-  background-color: rgba(159, 157, 157, 0.361);
+  background-color: rgba(242, 240, 240, 0.361);
   backdrop-filter: blur(3px);
   position: absolute;
   top: 100%;

@@ -8,16 +8,49 @@
     <main class="container">
       <header class="header">
         <h1 class="logo"><a href="./index.html">Peditelo</a></h1>
-        <nav>
-          <ul>
-            <li><a class="links" href="./index.html"> Home</a></li>
-            <li>
-              <a class="links" href="/pages/ProductsPage/index.html"
-                >Products</a
-              >
+        <form>
+          <input
+            type="text"
+            id="search"
+            autocomplete="off"
+            placeholder="Search..."
+          />
+        </form>
+        <nav class="navigation-menu">
+          <ul class="navigation-list">
+            <li class="navigation-item categories">
+              Categories
+              <span class="open-menu-categories-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#ffff"
+                >
+                  <path
+                    d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"
+                  />
+                </svg>
+              </span>
+              <div class="categories-list-container" hidden>
+                <ul class="categories-list">
+                  <li class="category-item" value="men's clothing">
+                    Men's clothing
+                  </li>
+                  <li class="category-item" value="jewelery">Jewelery</li>
+                  <li class="category-item" value="electronics">Electronics</li>
+                  <li class="category-item" value="women's clothing">
+                    Women's clothing
+                  </li>
+                </ul>
+              </div>
             </li>
-            <li>
-              <a class="links" href="/pages/CartPage/index.html"> Cart</a>
+            <li class="navigation-item">
+              <a class="navigation-link" href="">My purchases</a>
+            </li>
+            <li class="navigation-item">
+              <a class="navigation-link" href="">Favorites</a>
             </li>
           </ul>
         </nav>
@@ -40,6 +73,7 @@
         <ul class="products-list-grid"></ul>
       </section>
     </main>
-    <script src="" type="module"></script>
+    <script src="script.js" type="module"></script>
+    <script src="./pages/ProductsPage/script.js" type="module"></script>
   </body>
 </html>

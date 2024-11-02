@@ -15,13 +15,12 @@ form.addEventListener("submit", (e) => {
   getProducts();
 });
 
-async function getProducts() {
+export async function getProducts() {
   const url = `https://fakestoreapi.com/products`;
 
   try {
     const response = await fetch(url);
     const result = await response.json();
-
     showProducts(result);
     return result;
   } catch (error) {
@@ -43,7 +42,7 @@ function showProducts(products) {
     img.setAttribute("src", product.image);
 
     li.append(product_title, img, add_btn);
-    li.classList = "product ";
+    li.classList = "product";
     productsList.append(li);
   });
 }
