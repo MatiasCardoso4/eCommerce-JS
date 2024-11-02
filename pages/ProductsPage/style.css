@@ -27,8 +27,8 @@ body {
 }
 
 .header {
-  display: flex;
   width: 100%;
+  display: flex;
   justify-content: center;
   align-items: center;
   background-color: slateblue;
@@ -39,9 +39,29 @@ body {
   grid-area: header;
 }
 
-.header h1 a {
+.header .logo a {
   color: var(--text-clr);
   text-decoration: none;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+}
+
+.header input {
+  width: 370px;
+  border-radius: 20px;
+  padding: 8px;
+  font-size: 14px;
+  border: none;
+}
+
+.header input:focus {
+  outline: none;
+}
+
+.header input::placeholder {
+  font-size: 16px;
+  color: silver;
 }
 
 .header ul {
@@ -54,44 +74,47 @@ body {
 .navigation-menu {
   position: absolute;
   bottom: 0;
+  width: 100%;
+}
+
+.navigation-list {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
 }
 
 ul li {
   height: 50px;
   display: flex;
   align-items: center;
+  color: #ffffff;
+  cursor: pointer;
 }
 
-ul .navigation-item {
+ul li .navigation-link {
   text-decoration: none;
   font-size: 16px;
-  color: #ffff;
-  height: 100%;
   display: flex;
   align-items: center;
-  padding: 0 30px;
   cursor: pointer;
+  color: #ffffff;
 }
 
 .categories {
   position: relative;
 }
 
-.categories:hover {
-}
-
 .categories span svg {
   vertical-align: middle;
 }
 
-.categories::after {
-  content: "";
-  display: block;
+.active {
+  display: flex;
   height: 300px;
-  width: 200px;
-  background-color: white;
-  border: 2px solid black;
-  z-index: -1;
+  width: 250px;
+  background-color: rgba(159, 157, 157, 0.361);
+  backdrop-filter: blur(3px);
   position: absolute;
   top: 100%;
 }
