@@ -1,5 +1,3 @@
-import { createCart } from "./pages/CartPage/script.js";
-
 const input = document.querySelector("input");
 const form = document.querySelector("form");
 const productsList = document.querySelector(".products-list-grid");
@@ -13,6 +11,7 @@ input.addEventListener("input", ({ target }) => {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   getProducts();
+  input.value = "";
 });
 
 export async function getProducts() {
@@ -37,12 +36,12 @@ function showProducts(products) {
     const li = document.createElement("li");
     const img = document.createElement("img");
     const add_btn = document.createElement("button");
-
+    add_btn.className = "add-btn";
+    add_btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#f1f1f1"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>`;
     product_title.textContent = product.title;
     img.setAttribute("src", product.image);
-
-    li.append(product_title, img, add_btn);
-    li.classList = "product";
+    li.append(img, product_title, add_btn);
+    li.classList = "product-card";
     productsList.append(li);
   });
 }

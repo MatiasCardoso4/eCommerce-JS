@@ -6,7 +6,9 @@
 }
 
 :root {
-  --text-clr: #080808;
+  --text-clr: #c4c2c2e1;
+  --background-button: #8c1627;
+  --background-header: #ffffff;
 }
 
 body {
@@ -24,18 +26,23 @@ body {
     "aside content content"
     "aside content content";
   position: relative;
+  padding-bottom: 20px;
 }
 .header {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: slateblue;
+  background-color: var(--background-header);
   box-shadow: 1px 0px 4px 4px rgba(0, 0, 0, 0.3);
   position: sticky;
   top: 0;
   z-index: 9999;
   grid-area: header;
+}
+
+.header .logo img {
+  width: 200px;
 }
 
 .header .logo a {
@@ -46,12 +53,17 @@ body {
   top: 8px;
 }
 
+.header .cart {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
 .header input {
   width: 370px;
   border-radius: 20px;
   padding: 8px;
   font-size: 14px;
-  border: none;
+  border: 1px solid lightgray;
 }
 
 .header input:focus {
@@ -179,24 +191,36 @@ input[type="range"],
   grid-template-columns: repeat(4, 1fr);
 }
 
-.product {
+.product-card {
   width: 95%;
   height: 25vh;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 20px;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  place-items: center;
   border: 1px solid black;
   border-radius: 6px;
+  position: relative;
+  padding: 4px;
 }
 
-.product p {
+.product-card p {
   width: 100%;
-  text-align: center;
+  text-align: left;
 }
 
 img {
-  width: 55px;
+  width: 67px;
+}
+
+.add-btn {
+  background-color: var(--background-button);
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
 @media (max-width: 1000px) {
