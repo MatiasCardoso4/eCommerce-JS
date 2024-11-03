@@ -1,16 +1,22 @@
 const input = document.querySelector("input");
 const form = document.querySelector("form");
 const productsList = document.querySelector(".products-list-grid");
+const category_select = document.querySelector("select");
 
 let product = "";
+let category = "all";
 
-input.addEventListener("input", ({ target }) => {
+input.addEventListener("change", ({ target }) => {
   product = target.value;
+  getProducts();
+});
+
+category_select.addEventListener("change", ({ target }) => {
+  category = target.value;
 });
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  getProducts();
   input.value = "";
 });
 
@@ -21,6 +27,7 @@ export async function getProducts() {
     const response = await fetch(url);
     const result = await response.json();
     showProducts(result);
+
     return result;
   } catch (error) {
     console.error(error);
@@ -46,10 +53,12 @@ function showProducts(products) {
   });
 }
 
-function filterProducts(products, product) {
-  return products.filter((p) =>
-    p.title.toLocaleLowerCase().includes(product.toLocaleLowerCase())
-  );
+function filterProducts(products) {
+  return products.filter((p) => {
+    if (p.title.toLocaleLowerCase().includes(product.toLocaleLowerCase())) {
+      return p;
+    }
+  });
 }
 
 window.addEventListener("DOMContentLoaded", getProducts);
