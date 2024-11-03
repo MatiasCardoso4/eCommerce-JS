@@ -1,12 +1,6 @@
-*,
-*::after,
-*::before {
+* {
   margin: 0;
   padding: 0;
-}
-
-:root {
-  --text-clr: #080808;
 }
 
 body {
@@ -16,13 +10,14 @@ body {
 }
 
 .container {
+  height: 100vh;
   display: grid;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 150px 1fr;
   grid-template-areas:
     "header header header"
-    "aside content content"
-    "aside content content";
+    "content content content"
+    "content  content content";
   position: relative;
 }
 
@@ -31,12 +26,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: slateblue;
+  background-color: var(--background-header);
   box-shadow: 1px 0px 4px 4px rgba(0, 0, 0, 0.3);
   position: sticky;
   top: 0;
   z-index: 9999;
   grid-area: header;
+}
+
+.header .logo img {
+  width: 200px;
 }
 
 .header .logo a {
@@ -47,12 +46,17 @@ body {
   top: 8px;
 }
 
+.header .cart {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
 .header input {
   width: 370px;
   border-radius: 20px;
   padding: 8px;
   font-size: 14px;
-  border: none;
+  border: 1px solid rgb(195, 195, 195);
 }
 
 .header input:focus {
@@ -64,7 +68,7 @@ body {
   color: silver;
 }
 
-.header ul {
+.header .navigation-list {
   width: 100%;
   list-style: none;
   display: flex;
@@ -84,21 +88,19 @@ body {
   gap: 12px;
 }
 
-ul li {
+.navigation-list .navigation-item {
   height: 50px;
   display: flex;
   align-items: center;
-  color: #ffffff;
   cursor: pointer;
 }
 
-ul li .navigation-link {
+.navigation-list .navigation-item .navigation-link {
   text-decoration: none;
   font-size: 16px;
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: #ffffff;
 }
 
 .categories {
@@ -108,87 +110,77 @@ ul li .navigation-link {
 .categories span svg {
   vertical-align: middle;
 }
+.categories-list-container {
+  height: 200px;
+  width: 250px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 100%;
+  border: 1px solid black;
+}
 
 .active {
   display: flex;
-  height: 300px;
-  width: 250px;
-  background-color: rgba(242, 240, 240, 0.361);
-  backdrop-filter: blur(3px);
-  position: absolute;
-  top: 100%;
 }
 
-.navigation-item:hover {
-  text-decoration: underline;
-}
-
-.filters {
-  position: fixed;
-  width: 200px;
-  height: 100vh;
-  display: flex;
+.categories-list {
   flex-direction: column;
+  list-style: none;
+  width: 100%;
+  height: 50px;
+}
+
+.categories-list .category-item {
+  height: 100%;
+  font-size: 18px;
+  display: flex;
   align-items: center;
-  padding: 20px;
-  gap: 8px;
-  border-right: 2px solid black;
-  grid-area: aside;
+  padding-left: 6px;
 }
 
-.filters input[type="text"] {
-  padding: 2px;
+.categories-list .category-item:hover {
+  text-decoration: underline;
+  background-color: #8c1627;
+  color: #fff;
 }
 
-.filters input[type="text"],
-input[type="range"],
-#category {
-  width: 180px;
-  height: 28px;
-  font-size: 16px;
-}
-
-.product-container-grid {
+.cart-container {
   display: grid;
   place-items: center;
-  grid-area: content;
-  margin-top: 20px;
 }
 
-.products-list-grid {
-  display: grid;
-  row-gap: 20px;
-  grid-template-columns: repeat(4, 1fr);
+.cart-list {
+  width: 100vh;
+  height: 80vh;
 }
 
-.product {
-  width: 95%;
-  height: 25vh;
+.product-cart {
+  list-style: none;
+  font-size: 20px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  gap: 8px;
   border: 1px solid black;
-  border-radius: 6px;
+  padding: 14px;
+  margin-bottom: 4px;
+  position: relative;
 }
 
-.product p {
-  width: 100%;
-  text-align: center;
+.product-image {
+  width: 35px;
 }
 
-img {
-  width: 55px;
+.product-cart p {
+  max-width: 500px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-@media (max-width: 1000px) {
-  .products-list-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .product,
-  .product p {
-    width: 100%;
-    font: 16px;
-  }
+.delete-btn {
+  background-color: inherit;
+  border: none;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
 }

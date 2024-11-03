@@ -3,27 +3,84 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="cart.css" />
     <title>Cart</title>
   </head>
   <body>
     <main class="container">
       <header class="header">
-        <h1 class="logo"><a href="../../index.html">Peditelo</a></h1>
-        <nav>
-          <ul>
-            <li><a class="links" href="../../index.html"> Home</a></li>
-            <li>
-              <a class="links" href="../ProductsPage/index.html">Products</a>
+        <div class="logo">
+          <a href="../../index.html"
+            ><img src="../../images/logo-png.png" alt=""
+          /></a>
+        </div>
+        <form>
+          <input
+            type="text"
+            id="search"
+            autocomplete="off"
+            placeholder="Search..."
+          />
+        </form>
+        <nav class="navigation-menu">
+          <ul class="navigation-list">
+            <li class="navigation-item categories">
+              Categories
+              <span class="open-menu-categories-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#100f0f"
+                >
+                  <path
+                    d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"
+                  />
+                </svg>
+              </span>
+              <div class="categories-list-container" hidden>
+                <ul class="categories-list">
+                  <li class="category-item" value="men's clothing">
+                    Men's clothing
+                  </li>
+                  <li class="category-item" value="jewelery">Jewelery</li>
+                  <li class="category-item" value="electronics">Electronics</li>
+                  <li class="category-item" value="women's clothing">
+                    Women's clothing
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="navigation-item">
+              <a class="navigation-link" href="">My purchases</a>
+            </li>
+            <li class="navigation-item">
+              <a class="navigation-link" href="">Favorites</a>
             </li>
           </ul>
         </nav>
+        <div class="cart">
+          <a href="./index.html">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#100f0f"
+            >
+              <path
+                d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"
+              />
+            </svg>
+          </a>
+        </div>
       </header>
-
       <section class="cart-container">
         <ul class="cart-list"></ul>
       </section>
     </main>
-    <script src="script.js" type="module"></script>
+    <script src="./cart.js" type="module"></script>
+    <script src="../../category-menu.js" type="module"></script>
   </body>
 </html>
