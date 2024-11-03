@@ -2,22 +2,31 @@ const input = document.querySelector("input");
 const form = document.querySelector("form");
 const productsList = document.querySelector(".products-list-grid");
 const category_select = document.querySelector("select");
+const price_filter = document.querySelector('input[type="range"]');
+const priceSpan = document.querySelector(".price");
 
 let product = "";
 let category = "all";
+let price = 0;
 
-input.addEventListener("change", ({ target }) => {
+input.addEventListener("input", ({ target }) => {
   product = target.value;
   getProducts();
 });
 
-category_select.addEventListener("change", ({ target }) => {
+category_select.addEventListener("input", ({ target }) => {
   category = target.value;
+  getProducts();
+});
+
+price_filter.addEventListener("input", ({ target }) => {
+  price = target.value;
+  priceSpan.textContent = `$${price}`;
+  getProducts();
 });
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  input.value = "";
 });
 
 export async function getProducts() {
@@ -27,6 +36,7 @@ export async function getProducts() {
     const response = await fetch(url);
     const result = await response.json();
     showProducts(result);
+    // console.log(result);
 
     return result;
   } catch (error) {
@@ -56,9 +66,11 @@ function showProducts(products) {
 
 function filterProducts(products) {
   return products.filter((p) => {
-    if (p.title.toLocaleLowerCase().includes(product.toLocaleLowerCase())) {
-      return p;
-    }
+    return (
+      p.title.toLocaleLowerCase().includes(product.toLocaleLowerCase()) &&
+      (category === "all" || p.category === category) &&
+      p.price >= price
+    );
   });
 }
 
