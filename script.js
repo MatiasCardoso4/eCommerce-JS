@@ -46,6 +46,7 @@ function showProducts(products) {
     add_btn.className = "add-btn";
     add_btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#f1f1f1"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>`;
     product_title.textContent = product.title;
+    img.className = "image-product";
     img.setAttribute("src", product.image);
     li.append(img, product_title, add_btn);
     li.classList = "product-card";
