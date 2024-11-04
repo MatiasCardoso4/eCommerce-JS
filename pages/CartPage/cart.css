@@ -4,7 +4,7 @@
 }
 
 :root {
-  --text-clr: #100f0f;
+  --text-clr: #a7a7a7;
   --background-button: #8c1627;
   --background-button-hover: #9f3343;
   --background-header: #ffffff;
@@ -164,14 +164,21 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid black;
-  padding: 14px;
+  border-radius: 4px;
   margin-bottom: 4px;
   position: relative;
+  height: 80px;
+  padding: 6px;
 }
 
 .product-image {
   width: 35px;
+  height: 35px;
+  border: 2px solid black;
+  padding: 4px;
+  margin-right: 8px;
+  object-fit: contain;
+  cursor: pointer;
 }
 
 .product-cart p {
@@ -179,12 +186,37 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--text-clr);
+  cursor: pointer;
+}
+
+.product-cart p:hover {
+  text-decoration: underline;
+}
+
+.product-cart span {
+  font-weight: bold;
+}
+
+.add-btn {
+  position: absolute;
+  right: 65px;
+}
+
+.remove-btn {
+  position: absolute;
+  right: 38px;
 }
 
 .delete-btn {
-  background-color: inherit;
-  border: none;
   position: absolute;
   right: 10px;
+}
+
+.add-btn,
+.remove-btn,
+.delete-btn {
+  background-color: inherit;
+  border: none;
   cursor: pointer;
 }
