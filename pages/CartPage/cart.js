@@ -1,6 +1,8 @@
 const cartList = document.querySelector(".cart-list");
 
-const savedStorage = JSON.parse(localStorage.getItem("cart")) || [];
+const savedStorage = localStorage.getItem("cart")
+  ? JSON.parse(localStorage.getItem("cart"))
+  : [];
 
 let cart = savedStorage;
 
