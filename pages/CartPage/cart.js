@@ -1,46 +1,48 @@
 const cartList = document.querySelector(".cart-list");
 
-let savedStorage = JSON.parse(localStorage.getItem("cart") || []);
+const savedStorage = JSON.parse(localStorage.getItem("cart") || []);
+
+let cart = savedStorage;
 
 export const addToCart = (product) => {
-  const ifExist = savedStorage.some((p) => p.id === product.id);
+  const ifExist = cart.some((p) => p.id === product.id);
   if (!ifExist) {
-    savedStorage.push({ ...product, quantity: 1 });
+    cart.push({ ...product, quantity: 1 });
   } else {
-    savedStorage.forEach((p) => {
+    cart.forEach((p) => {
       if (p.id === product.id) {
         p.quantity += 1;
       }
     });
   }
-  localStorage.setItem("cart", JSON.stringify(savedStorage));
+  localStorage.setItem("cart", JSON.stringify(cart));
   createCart();
 };
 
 const removeFromCart = (product) => {
-  const ifExist = savedStorage.some((p) => p.id === product.id);
+  const ifExist = cart.some((p) => p.id === product.id);
   if (product.quantity <= 1) return;
   if (ifExist) {
-    savedStorage.forEach((p) => {
+    cart.forEach((p) => {
       if (p.id === product.id) {
         p.quantity -= 1;
       }
     });
   }
-  localStorage.setItem("cart", JSON.stringify(savedStorage));
+  localStorage.setItem("cart", JSON.stringify(cart));
   createCart();
 };
 
 const deleteFromCart = (id) => {
-  savedStorage = savedStorage.filter((p) => p.id !== id);
-  localStorage.setItem("cart", JSON.stringify(savedStorage));
+  cart = cart.filter((p) => p.id !== id);
+  localStorage.setItem("cart", JSON.stringify(cart));
   createCart();
 };
 
 export const createCart = () => {
   cartList.innerHTML = "";
 
-  return savedStorage.forEach((p) => {
+  return cart.forEach((p) => {
     const li = document.createElement("li");
     const product_name = document.createElement("p");
     const img = document.createElement("img");
