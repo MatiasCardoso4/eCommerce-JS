@@ -1,8 +1,8 @@
 const cartList = document.querySelector(".cart-list");
 
-const savedStorage = JSON.parse(localStorage.getItem("cart"));
+const savedStorage = JSON.parse(localStorage.getItem("cart")) || [];
 
-let cart = savedStorage || [];
+let cart = savedStorage;
 
 export const addToCart = (product) => {
   const ifExist = cart.some((p) => p.id === product.id);
