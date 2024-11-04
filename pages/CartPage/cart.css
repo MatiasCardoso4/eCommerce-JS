@@ -3,6 +3,13 @@
   padding: 0;
 }
 
+:root {
+  --text-clr: #100f0f;
+  --background-button: #8c1627;
+  --background-button-hover: #9f3343;
+  --background-header: #ffffff;
+}
+
 body {
   min-height: 100vh;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -14,10 +21,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 150px 1fr;
-  grid-template-areas:
-    "header header header"
-    "content content content"
-    "content  content content";
+  grid-template-areas: "header" "content";
   position: relative;
 }
 
