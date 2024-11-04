@@ -48,19 +48,22 @@ export function showProducts(products) {
   const filteredProducts = filterProducts(products, product);
 
   filteredProducts.forEach((product) => {
-    const product_title = document.createElement("p");
-    const li = document.createElement("li");
-    const img = document.createElement("img");
-    const add_btn = document.createElement("button");
-    add_btn.className = "add-btn";
-    add_btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#f1f1f1"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>`;
-    add_btn.addEventListener("click", () => addToCart(product));
-    product_title.textContent = product.title;
-    img.classList.add("image-product");
-    img.setAttribute("src", product.image);
-    li.append(img, product_title, add_btn);
-    li.classList.add("product-card");
-    productsList.append(li);
+    const productTitle = document.createElement("p");
+    const productPrice = document.createElement("span");
+    const productItem = document.createElement("li");
+    const productImage = document.createElement("img");
+    const addBtn = document.createElement("button");
+    addBtn.className = "add-btn";
+    addBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#0a0a0a"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>`;
+    addBtn.addEventListener("click", () => addToCart(product));
+    productTitle.textContent = product.title;
+    productPrice.classList.add("product-price");
+    productPrice.textContent = `$${product.price.toFixed(2)}`;
+    productImage.classList.add("image-product");
+    productImage.setAttribute("src", product.image);
+    productItem.append(productImage, productTitle, productPrice, addBtn);
+    productItem.classList.add("product-card");
+    productsList.append(productItem);
   });
 }
 

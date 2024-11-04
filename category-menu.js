@@ -4,14 +4,10 @@ const categories_list_container = document.querySelector(
 );
 const categories_list = document.querySelector(".categories-list");
 
-categories.addEventListener("click", () => {
-  categories_list_container.classList.toggle("active");
+categories.addEventListener("mouseover", () => {
+  categories_list_container.classList.add("active");
 });
 
-// const categoryList = (data) => {
-//   data.forEach((p) => {
-//     const li = document.createElement("li");
-//     li.textContent = p.category;
-//     categories_list.appendChild(li);
-//   });
-// };
+categories.addEventListener("mouseout", () => {
+  categories_list_container.classList.remove("active");
+});

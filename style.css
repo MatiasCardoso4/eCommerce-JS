@@ -6,16 +6,15 @@
 }
 
 :root {
-  --text-clr: #100f0f;
-  --background-button: #8c1627;
-  --background-button-hover: #9f3343;
-  --background-header: #ffffff;
+  --text-clr: #ebebeb;
+  --background-button: #ddd908;
+  --background-button-hover: #ddda08d0;
+  --background-header: #0a0a0a;
 }
 
 body {
   min-height: 100vh;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
@@ -41,8 +40,8 @@ body {
   grid-area: header;
 }
 
-.header .logo img {
-  width: 200px;
+.header .logo .logo {
+  width: 100px;
 }
 
 .header .logo a {
@@ -63,7 +62,7 @@ body {
   border-radius: 20px;
   padding: 8px;
   font-size: 14px;
-  border: 1px solid rgb(195, 195, 195);
+  border: 2px solid rgb(245, 5, 5);
 }
 
 .header input:focus {
@@ -100,6 +99,7 @@ body {
   display: flex;
   align-items: center;
   cursor: pointer;
+  color: var(--text-clr);
 }
 
 .navigation-list .navigation-item .navigation-link {
@@ -108,6 +108,7 @@ body {
   display: flex;
   align-items: center;
   cursor: pointer;
+  color: var(--text-clr);
 }
 
 .categories {
@@ -143,12 +144,13 @@ body {
   display: flex;
   align-items: center;
   padding-left: 6px;
+  color: #0a0a0a;
 }
 
 .categories-list .category-item:hover {
   text-decoration: underline;
-  background-color: #8c1627;
-  color: #fff;
+  background-color: var(--background-button);
+  color: #0a0a0a;
 }
 
 .filters {
@@ -226,13 +228,22 @@ body {
   height: 67px;
 }
 
+.product-price {
+  position: absolute;
+  left: 18px;
+  bottom: 10px;
+  font-size: 18px;
+}
+
 .add-btn {
   background-color: var(--background-button);
   border: none;
+  border-radius: 4px;
   cursor: pointer;
-  width: 100%;
+  width: 16%;
   position: absolute;
-  bottom: 0;
+  bottom: 8px;
+  right: 18px;
 }
 
 .add-btn:hover {
@@ -244,9 +255,9 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: 150px 70px 1fr;
     grid-template-areas:
-      "header header header"
-      "filters filters filters"
-      "content content content";
+      "header"
+      "filters"
+      "content";
   }
 
   .header {
