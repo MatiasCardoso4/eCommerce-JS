@@ -1,23 +1,31 @@
 const cartList = document.querySelector(".cart-list");
+const total_products = document.querySelector(".amount");
 
 const savedStorage = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : [];
 
-let cart = savedStorage;
+let cart = savedStorage || [];
+
+let totalProducts = localStorage.getItem("totalProducts");
 
 export const addToCart = (product) => {
   const ifExist = cart.some((p) => p.id === product.id);
   if (!ifExist) {
     cart.push({ ...product, quantity: 1 });
+    totalProductsCount();
   } else {
     cart.forEach((p) => {
-      if (p.id === product.id) {
-        p.quantity += 1;
-      }
+      p.id === product.id && p.quantity++;
     });
+
+    totalProducts = cart.reduce((acc, product) => {
+      return acc + product.quantity;
+    }, 0);
   }
+
   localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem("totalProducts", totalProducts);
   createCart();
 };
 
@@ -26,19 +34,28 @@ const removeFromCart = (product) => {
   if (product.quantity <= 1) return;
   if (ifExist) {
     cart.forEach((p) => {
-      if (p.id === product.id) {
-        p.quantity -= 1;
-      }
+      p.id === product.id && p.quantity--;
+      totalProductsCount();
     });
   }
+
   localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem("totalProducts", totalProducts);
   createCart();
 };
 
 const deleteFromCart = (id) => {
   cart = cart.filter((p) => p.id !== id);
   localStorage.setItem("cart", JSON.stringify(cart));
+  totalProductsCount();
   createCart();
+};
+
+const totalProductsCount = () => {
+  totalProducts = cart.reduce((acc, product) => {
+    return acc + product.quantity;
+  }, 0);
+  localStorage.setItem("totalProducts", totalProducts);
 };
 
 export const createCart = () => {
@@ -66,6 +83,7 @@ export const createCart = () => {
     img.className = "product-image";
     li.className = "product-cart";
     product_name.textContent = p.title;
+    total_products.textContent = totalProducts;
     li.append(img, product_name, span, add_btn, remove_btn, delete_btn);
     cartList.appendChild(li);
   });
