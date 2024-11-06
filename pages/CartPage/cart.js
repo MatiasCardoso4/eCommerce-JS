@@ -47,6 +47,7 @@ const removeFromCart = (product) => {
 const deleteFromCart = (id) => {
   cart = cart.filter((p) => p.id !== id);
   localStorage.setItem("cart", JSON.stringify(cart));
+
   totalProductsCount();
   createCart();
 };
@@ -55,6 +56,7 @@ const totalProductsCount = () => {
   totalProducts = cart.reduce((acc, product) => {
     return acc + product.quantity;
   }, 0);
+
   localStorage.setItem("totalProducts", totalProducts);
 };
 
