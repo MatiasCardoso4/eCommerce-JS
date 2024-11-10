@@ -148,7 +148,7 @@ body {
 .categories-list .category-item:hover {
   text-decoration: underline;
   background-color: var(--background-button);
-  color: #fff;
+  color: #0a0a0a;
 }
 
 .cart-container {
