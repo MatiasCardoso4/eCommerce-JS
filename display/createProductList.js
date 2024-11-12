@@ -1,4 +1,4 @@
-import { addToCart } from "./addTocart.js";
+import { addToCart } from "../helpers/addTocart.js";
 
 const productsList = document.querySelector(".products-list-grid");
 

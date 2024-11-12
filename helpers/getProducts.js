@@ -1,4 +1,4 @@
-import { showProducts } from "./showProducts.js";
+import { showProducts } from "../display/showProducts.js";
 
 export async function getProducts() {
   const url = `https://fakestoreapi.com/products`;
