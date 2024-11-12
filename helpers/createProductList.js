@@ -1,4 +1,5 @@
-import { addToCart } from "../pages/CartPage/cart.js";
+import { addToCart } from "./addTocart.js";
+
 const productsList = document.querySelector(".products-list-grid");
 
 export const createProductlist = (product) => {

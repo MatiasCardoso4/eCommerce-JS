@@ -1,3 +1,7 @@
+import { addToCart } from "../../helpers/addTocart.js";
+import { deleteFromCart } from "../../helpers/deleteFromCart.js";
+import { removeFromCart } from "../../helpers/removeFromCart..js";
+
 const cartList = document.querySelector(".cart-list");
 
 const savedStorage = localStorage.getItem("cart")
@@ -6,41 +10,7 @@ const savedStorage = localStorage.getItem("cart")
 
 export let cart = savedStorage || [];
 
-export const addToCart = (product) => {
-  const ifExist = cart.some((p) => p.id === product.id);
-  if (!ifExist) {
-    cart.push({ ...product, quantity: 1 });
-  } else {
-    cart.forEach((p) => {
-      p.id === product.id && p.quantity++;
-    });
-  }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-  createCart();
-};
-
-const removeFromCart = (product) => {
-  const ifExist = cart.some((p) => p.id === product.id);
-  if (product.quantity <= 1) return;
-  if (ifExist) {
-    cart.forEach((p) => {
-      p.id === product.id && p.quantity--;
-    });
-  }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-  createCart();
-};
-
-const deleteFromCart = (id) => {
-  cart = cart.filter((p) => p.id !== id);
-  localStorage.setItem("cart", JSON.stringify(cart));
-
-  createCart();
-};
-
-const createCart = () => {
+export const createCart = () => {
   cartList.textContent = "";
 
   cart.forEach((p) => {
