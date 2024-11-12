@@ -55,14 +55,30 @@ body {
 .header .cart {
   margin-left: 20px;
   cursor: pointer;
+  position: relative;
+}
+
+.total-products {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 14px;
 }
 
 .header input {
   width: 370px;
+  border: none;
   border-radius: 20px;
   padding: 8px;
   font-size: 14px;
-  border: 2px solid rgb(245, 5, 5);
 }
 
 .header input:focus {
@@ -121,7 +137,7 @@ body {
 .categories-list-container {
   height: 200px;
   width: 250px;
-  background-color: rgb(255, 255, 255);
+  background-color: #ffffff;
   position: absolute;
   top: 100%;
   border: 1px solid black;
@@ -201,11 +217,10 @@ body {
   grid-template-rows: 1fr 1fr 20px;
   flex-direction: column;
   place-items: center;
-  border: 1px solid black;
   border-radius: 6px;
   position: relative;
   padding: 8px;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.15);
 }
 
 .product-card p {
@@ -218,6 +233,12 @@ body {
   margin-left: 8px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 18px;
+  color: rgb(15, 14, 14);
+}
+
+.product-card a {
+  text-decoration: none;
 }
 
 .product-card p:hover {
@@ -233,6 +254,9 @@ body {
   left: 18px;
   bottom: 10px;
   font-size: 18px;
+  padding: 0 4px;
+  border-radius: 6px;
+  background-color: rgb(230, 230, 233);
 }
 
 .add-btn {

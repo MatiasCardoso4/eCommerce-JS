@@ -1,11 +1,12 @@
-import { addToCart } from "./pages/CartPage/cart.js";
-
+import { addToCart } from "../CartPage/cart.js";
+import { cart } from "../CartPage/cart.js";
 const input = document.querySelector("input");
 const form = document.querySelector("form");
 const productsList = document.querySelector(".products-list-grid");
 const category_select = document.querySelector("select");
 const price_filter = document.querySelector('input[type="range"]');
 const priceSpan = document.querySelector(".price");
+const totalProducts = document.querySelector(".total-products");
 
 let product = "";
 let category = "all";
@@ -37,7 +38,13 @@ export async function getProducts() {
   try {
     const response = await fetch(url);
     const result = await response.json();
-    showProducts(result);
+    const products = result.map((p) => {
+      const { title, price, image, category } = p;
+
+      return { title, price, image, category };
+    });
+    showProducts(products);
+    return products;
   } catch (error) {
     throw new Error(error);
   }
@@ -48,7 +55,9 @@ export function showProducts(products) {
   const filteredProducts = filterProducts(products, product);
 
   filteredProducts.forEach((product) => {
+    const { title, image, price } = product;
     const productTitle = document.createElement("p");
+    const link = document.createElement("a");
     const productPrice = document.createElement("span");
     const productItem = document.createElement("li");
     const productImage = document.createElement("img");
@@ -56,12 +65,15 @@ export function showProducts(products) {
     addBtn.className = "add-btn";
     addBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#0a0a0a"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>`;
     addBtn.addEventListener("click", () => addToCart(product));
-    productTitle.textContent = product.title;
+    totalProducts.textContent = "0" || `${cart.map((p) => p.quantity)}`;
+    productTitle.textContent = title;
+    link.href = `/pages/ProductPage/productPage.html?title=${title}`;
+    link.append(productTitle);
     productPrice.classList.add("product-price");
-    productPrice.textContent = `$${product.price.toFixed(2)}`;
+    productPrice.textContent = `$${price.toFixed(2)}`;
     productImage.classList.add("image-product");
-    productImage.setAttribute("src", product.image);
-    productItem.append(productImage, productTitle, productPrice, addBtn);
+    productImage.setAttribute("src", image);
+    productItem.append(productImage, link, productPrice, addBtn);
     productItem.classList.add("product-card");
     productsList.append(productItem);
   });
